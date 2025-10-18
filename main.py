@@ -21,7 +21,7 @@ week_number = iso_tuple[1]
 subject = f"Sci-Tech Headlines Today - Newsletter - CW{week_number}"
 
 #Get and Compose Newsletter from Newsdata API. Just first 10 news
-url = "https://newsdata.io/api/1/sources?apikey="+newsletter_api_key+"&category=technology,science"
+url = "https://newsdata.io/api/1/sources?apikey="+newsletter_api_key+"&category=technology,science&language=en"
 request = requests.get(url)
 content = request.json()
 first_ten_news = content['results'][0:10]
@@ -29,7 +29,8 @@ first_ten_news = content['results'][0:10]
 email_message = ""
 
 for index,news in enumerate(first_ten_news):
-    formatted_news = f"{index+1}. {news['name']} \n {news['description']} \n \n"
+    formatted_news = (f"{index+1}. {news['name']} \n {news['description']} \n"
+                      f"{news['url']} \n \n")
     email_message = email_message + formatted_news
 
 #Compose Mail
