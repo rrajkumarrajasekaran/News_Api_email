@@ -41,7 +41,7 @@ msg['To'] = receiver_mail_id
 
 #setup SMTP and Send mail
 try:
-    # Connect to the SMTP server
+    # Connect to the SMTP server, 587 since TLS is used
     server = smtplib.SMTP("smtp.gmail.com", 587)
     server.starttls()
     server.login(sender_mail_id, sender_password)
